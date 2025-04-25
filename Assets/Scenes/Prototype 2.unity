@@ -643,7 +643,7 @@ MonoBehaviour:
   - {fileID: 8442352701616895058, guid: c60389175d1a7fe45ae16068b12d725f, type: 3}
   - {fileID: 20831372136658587, guid: d2363d9ac6dabae4292ed2252841acb5, type: 3}
   spawnPosZ: 20
-  spawnRangeX: 20
+  spawnRangeX: 10
 --- !u!4 &781347521
 Transform:
   m_ObjectHideFlags: 0
@@ -828,7 +828,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3dc59a109c2b941458e73ae82144221e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 10
   xBound: 10
   projectilePrefab: {fileID: 2309583172564464131, guid: e6d32610b05e5d447a59910cda92b81f, type: 3}
 --- !u!1 &1590138454
