@@ -3,8 +3,9 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     float horizontalInput; // Variable to store horizontal input
+    float verticalInput; // Variable to store vertical input
     public float speed = 10f; // Speed of the player
-    public float xBound = 10f; // Boundary limit for the player's position on the x-axis
+    public float bound = 10f; // Boundary limit for the player's position on the x-axis
 
     public GameObject projectilePrefab; // Reference to the projectile prefab
 
@@ -17,22 +18,26 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Get horizontal input (A/D or Left/Right arrow keys)
+        // Get horizontal and vertical input (A/D or Left/Right arrow keys, W/S or Up/Down arrow keys)
         horizontalInput = Input.GetAxis("Horizontal");
+        verticalInput = Input.GetAxis("Vertical");
 
         // Calculate movement
-        Vector3 movement = new Vector3(horizontalInput, 0, 0) * speed * Time.deltaTime;
+        Vector3 movement = new Vector3(horizontalInput, 0, verticalInput) * speed * Time.deltaTime;
 
         // Apply movement to the player's position
         transform.Translate(movement);
 
         // Prevent the player from going out of bounds
         Vector3 clampedPosition = transform.position;
-        clampedPosition.x = Mathf.Clamp(clampedPosition.x, -xBound, xBound); //Clamp Pitää huolta siitä että pelaaja pysyy -xBound ja xBound välillä
+        clampedPosition.x = Mathf.Clamp(clampedPosition.x, -bound, bound); // Clamp x-axis
+        clampedPosition.z = Mathf.Clamp(clampedPosition.z, 0, 15); // Clamp z-axis
         transform.position = clampedPosition;
+
+        // Instantiate projectile on spacebar press
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Instantiate(projectilePrefab, transform.position, projectilePrefab.transform.rotation); // Luo Viinipullon pelaajan sijaintiin
+            Instantiate(projectilePrefab, transform.position, projectilePrefab.transform.rotation); // Spawn projectile at player's position
         }
     }
 }
